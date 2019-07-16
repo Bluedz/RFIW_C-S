@@ -37,7 +37,7 @@ public class Pg_Bye extends javax.swing.JFrame {
         setPreferredSize(new java.awt.Dimension(1024, 768));
 
         TitleLabel.setFont(new java.awt.Font("微软雅黑", 0, 40)); // NOI18N
-        TitleLabel.setText("结算已完成，请点击离区按钮，后刷卡离区");
+        TitleLabel.setText("结算已完成，请点击“离区”按钮后刷卡离区");
 
         jButton1.setFont(new java.awt.Font("微软雅黑", 0, 36)); // NOI18N
         jButton1.setText("离区");
@@ -53,14 +53,14 @@ public class Pg_Bye extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(151, Short.MAX_VALUE)
+                .addContainerGap(138, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jButton1)
                         .addGap(472, 472, 472))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(TitleLabel)
-                        .addGap(150, 150, 150))))
+                        .addGap(123, 123, 123))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
