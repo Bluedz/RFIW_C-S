@@ -5,6 +5,8 @@
  */
 package rfiw;
 
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Zyh
@@ -41,14 +43,15 @@ public class Pg_Bill extends javax.swing.JFrame {
         jDialog1.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         jDialog1.setAlwaysOnTop(true);
         jDialog1.setLocationByPlatform(true);
-        jDialog1.setPreferredSize(new java.awt.Dimension(400, 90));
-        jDialog1.setSize(new java.awt.Dimension(400, 110));
+        jDialog1.setPreferredSize(new java.awt.Dimension(600, 150));
+        jDialog1.setSize(new java.awt.Dimension(600, 150));
         jDialog1.addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
                 jDialog1WindowClosed(evt);
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("微软雅黑", 0, 24)); // NOI18N
         jLabel1.setText("扫码结果：");
 
         jTextField1.setForeground(new java.awt.Color(204, 204, 204));
@@ -58,6 +61,7 @@ public class Pg_Bill extends javax.swing.JFrame {
             }
         });
 
+        jButton3.setFont(new java.awt.Font("微软雅黑", 0, 24)); // NOI18N
         jButton3.setText("ok");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -73,35 +77,39 @@ public class Pg_Bill extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jButton3)
-                .addGap(17, 17, 17))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
         jDialog1Layout.setVerticalGroup(
             jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jDialog1Layout.createSequentialGroup()
                 .addGap(24, 24, 24)
-                .addGroup(jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3))
-                .addContainerGap(40, Short.MAX_VALUE))
+                    .addGroup(jDialog1Layout.createSequentialGroup()
+                        .addGap(2, 2, 2)
+                        .addGroup(jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton3))))
+                .addContainerGap(233, Short.MAX_VALUE))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("智能仓库结算系统");
+        setMaximumSize(new java.awt.Dimension(1024, 2147483647));
+        setPreferredSize(new java.awt.Dimension(1024, 768));
 
-        TitleLabel.setFont(new java.awt.Font("微软雅黑", 0, 18)); // NOI18N
+        TitleLabel.setFont(new java.awt.Font("微软雅黑", 0, 36)); // NOI18N
         TitleLabel.setText("结算列表");
 
+        jTable1.setFont(new java.awt.Font("宋体", 0, 14)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {"1", "SF600117", "D00000000000145", "3S15000A002"},
                 {"2", "SV603430", "D00000000000001", "W153A016"},
-                {"3", "SV603431", "D00000000000001", "W153A017"},
-                {"4", null, null, null},
-                {null, null, null, null}
+                {"3", "SV603431", "D00000000000001", "W153A017"}
             },
             new String [] {
                 "Code", "物料号", "批次号", "库位号"
@@ -115,12 +123,13 @@ public class Pg_Bill extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        jTable1.setRowHeight(20);
         jScrollPane1.setViewportView(jTable1);
         if (jTable1.getColumnModel().getColumnCount() > 0) {
             jTable1.getColumnModel().getColumn(0).setPreferredWidth(20);
         }
 
-        jButton1.setFont(new java.awt.Font("微软雅黑", 0, 12)); // NOI18N
+        jButton1.setFont(new java.awt.Font("微软雅黑", 0, 36)); // NOI18N
         jButton1.setText("扫码");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -128,7 +137,7 @@ public class Pg_Bill extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setFont(new java.awt.Font("微软雅黑", 0, 12)); // NOI18N
+        jButton2.setFont(new java.awt.Font("微软雅黑", 0, 36)); // NOI18N
         jButton2.setText("确认");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -136,7 +145,7 @@ public class Pg_Bill extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setFont(new java.awt.Font("微软雅黑", 0, 18)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("微软雅黑", 0, 36)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(204, 51, 0));
         jLabel2.setText("提示：如果有未识别物料，请务必用扫码枪识别");
 
@@ -147,34 +156,33 @@ public class Pg_Bill extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(224, 224, 224)
+                        .addGap(434, 434, 434)
                         .addComponent(TitleLabel))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(74, 74, 74)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jButton1)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jButton2))
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(78, Short.MAX_VALUE))
+                        .addGap(117, 117, 117)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 747, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(jButton1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton2)))))
+                .addContainerGap(151, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(TitleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 199, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(24, 24, 24)
+                .addComponent(TitleLabel)
+                .addGap(43, 43, 43)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 138, Short.MAX_VALUE)
                 .addComponent(jLabel2)
-                .addGap(14, 14, 14)
+                .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
-                .addGap(35, 35, 35))
+                .addGap(89, 89, 89))
         );
 
         getAccessibleContext().setAccessibleName("");
@@ -206,8 +214,37 @@ public class Pg_Bill extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
         this.setVisible(true);
+        String textFieldValue = jTextField1.getText();
         jTextField1.setText("");
         jDialog1.dispose();
+        
+        String[] data = new String[4]; //用于操作表内数据行的data数组，元素个数要与table的列的数量相一致
+        int numT;//表格已有数据的行数
+        DefaultTableModel model = (DefaultTableModel) this.jTable1.getModel();
+        numT = model.getRowCount();//获取当前已有行数
+//        while (numT > 0) {//如果是全体刷新表格需要移除之前的所有数据行
+//            model.removeRow(0);
+//            numT--;
+//        }
+//        for (int i=0; i<4; i++){
+//            data[0] = "R" + i  + 1;
+//            data[1] = "R" + i  + 2;
+//            data[2] = "R" + i  + 3;
+//            data[3] = "R" + i  + 4;
+//        
+//        }
+
+        data[0] = "4";
+        data[1] = "SV603432";
+        data[2] = "D00000000000002";
+        data[3] = "W153A018";
+        
+     // 码枪未获取值则不更新列表
+        if (textFieldValue != null && textFieldValue.length() != 0) {
+            model.addRow(data);
+            jTable1.setModel(model);
+        }       
+        
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jDialog1WindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_jDialog1WindowClosed

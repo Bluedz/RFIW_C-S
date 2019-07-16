@@ -35,13 +35,15 @@ public class Pg_Welcome extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("智能仓库结算系统");
+        setMaximumSize(new java.awt.Dimension(1024, 768));
+        setPreferredSize(new java.awt.Dimension(1024, 768));
 
-        TitleLabel.setFont(new java.awt.Font("微软雅黑", 0, 18)); // NOI18N
+        TitleLabel.setFont(new java.awt.Font("微软雅黑", 0, 36)); // NOI18N
         TitleLabel.setText("欢迎使用西泰克智能仓库");
 
         jTextArea1.setEditable(false);
         jTextArea1.setColumns(1);
-        jTextArea1.setFont(new java.awt.Font("微软雅黑", 0, 24)); // NOI18N
+        jTextArea1.setFont(new java.awt.Font("微软雅黑", 0, 50)); // NOI18N
         jTextArea1.setLineWrap(true);
         jTextArea1.setRows(2);
         jTextArea1.setTabSize(1);
@@ -50,7 +52,7 @@ public class Pg_Welcome extends javax.swing.JFrame {
         jTextArea1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jScrollPane1.setViewportView(jTextArea1);
 
-        jButton1.setFont(new java.awt.Font("微软雅黑", 0, 18)); // NOI18N
+        jButton1.setFont(new java.awt.Font("微软雅黑", 0, 36)); // NOI18N
         jButton1.setText("开始结算");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -58,7 +60,7 @@ public class Pg_Welcome extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("宋体", 1, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("宋体", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(204, 102, 0));
         jLabel1.setText("存在未投入回收箱的标签，请确认完成后再次点击");
         jLabel1.setVisible(false);
@@ -70,32 +72,32 @@ public class Pg_Welcome extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addGap(98, 98, 98))
+                .addGap(88, 88, 88))
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(108, 108, 108)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 819, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(64, 64, 64)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 395, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(205, 205, 205)
-                        .addComponent(jButton1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(160, 160, 160)
-                        .addComponent(TitleLabel)))
-                .addContainerGap(71, Short.MAX_VALUE))
+                        .addComponent(TitleLabel)
+                        .addGap(236, 236, 236)))
+                .addContainerGap(97, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(415, 415, 415))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(35, 35, 35)
                 .addComponent(TitleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(44, 44, 44)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(48, 48, 48)
-                .addComponent(jButton1)
-                .addGap(18, 18, 18)
+                .addGap(176, 176, 176)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(151, 151, 151)
                 .addComponent(jLabel1)
-                .addContainerGap(74, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(54, 54, 54))
         );
 
         getAccessibleContext().setAccessibleName("");

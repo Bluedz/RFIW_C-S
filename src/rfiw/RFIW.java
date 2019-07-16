@@ -5,7 +5,6 @@
  */
 package rfiw;
 import javax.swing.JFrame;
-import rfiw.network.DoorTCPServer;
 import rfiw.network.MainServer;
 // import rfiw.data.BillData;
 /**
@@ -48,19 +47,11 @@ public class RFIW {
     
     public static void main(String[] args) throws Exception {
         // TODO code application logic here
-        // RFIW runner = new RFIW(); 
-        // System.out.print("{'Receive': 'ok'}");
+        // RFIW runner = new RFIW();                
+        
         new Pg_Welcome().setVisible(true);
-
-        MainServer ServerRFID = new rfiw.network.MainServer(5000);
-//        try{
-//        DoorTCPServer ServerDoor = new rfiw.network.DoorTCPServer(6000);
-//        }
-//        catch(Exception e){
-//        e.printStackTrace();
-//        }
-//  
-
+        // MainServer Server = 
+        new rfiw.network.MainServer();
         
         /* test
         rfiw.data.BillData.billList[1][1] = "show";

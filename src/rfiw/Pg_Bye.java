@@ -33,12 +33,15 @@ public class Pg_Bye extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("智能仓库结算系统");
         setLocation(new java.awt.Point(0, 0));
-        setPreferredSize(new java.awt.Dimension(530, 360));
+        setMaximumSize(new java.awt.Dimension(1024, 768));
+        setPreferredSize(new java.awt.Dimension(1024, 768));
 
-        TitleLabel.setFont(new java.awt.Font("微软雅黑", 0, 18)); // NOI18N
-        TitleLabel.setText("结算已完成，请刷卡离库");
+        TitleLabel.setFont(new java.awt.Font("微软雅黑", 0, 40)); // NOI18N
+        TitleLabel.setText("结算已完成，请点击离区按钮，后刷卡离区");
 
-        jButton1.setText("OK");
+        jButton1.setFont(new java.awt.Font("微软雅黑", 0, 36)); // NOI18N
+        jButton1.setText("离区");
+        jButton1.setFocusable(false);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -50,23 +53,23 @@ public class Pg_Bye extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(168, Short.MAX_VALUE)
+                .addContainerGap(151, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(TitleLabel)
-                        .addGap(164, 164, 164))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jButton1)
-                        .addGap(238, 238, 238))))
+                        .addGap(472, 472, 472))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(TitleLabel)
+                        .addGap(150, 150, 150))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(117, 117, 117)
-                .addComponent(TitleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(37, 37, 37)
+                .addContainerGap(346, Short.MAX_VALUE)
+                .addComponent(TitleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(84, 84, 84)
                 .addComponent(jButton1)
-                .addContainerGap(146, Short.MAX_VALUE))
+                .addGap(236, 236, 236))
         );
 
         getAccessibleContext().setAccessibleName("");

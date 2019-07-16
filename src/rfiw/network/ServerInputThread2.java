@@ -1,16 +1,23 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package rfiw.network;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.net.Socket;
 
-import java.io.OutputStream;
+/**
+ *
+ * @author Zyh
+ */
+public class ServerInputThread2 extends Thread{
+        private Socket socket;
 
-public class ServerInputThread extends Thread
-{
-    private Socket socket;
-
-    public ServerInputThread(Socket socket)
+    public ServerInputThread2(Socket socket)
     {
         super();
         this.socket = socket;
@@ -49,5 +56,4 @@ public class ServerInputThread extends Thread
             e.printStackTrace();
         }
     }
-
 }
