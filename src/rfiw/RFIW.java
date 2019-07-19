@@ -32,9 +32,11 @@ public class RFIW {
         switch (rfiw.data.ControlData.frameTag) {
             case "Welcome":
                 new Pg_Welcome().setVisible(true);
+                // welcomePage.setVisible(true);
                 break;
             case "Bill":
-                new Pg_Bill().setVisible(true);
+                JFrame billPage = new Pg_Bill();
+                       billPage.setVisible(true);
                 break;
             case "Bye":
                 new Pg_Bye().setVisible(true);
@@ -49,7 +51,8 @@ public class RFIW {
         // TODO code application logic here
         // RFIW runner = new RFIW();                
         
-        new Pg_Welcome().setVisible(true);
+        JFrame welcomePage = new Pg_Welcome();
+        welcomePage.setVisible(true);
         // MainServer Server = 
         new rfiw.network.MainServer();
         

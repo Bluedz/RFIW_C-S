@@ -15,5 +15,11 @@ public class ControlData {
     
     public static String frameTag; // frametag  界面切换用
     
-    public static int amoutOfRFIDInExit; // amount of RF-label in exit Area
+    public static int amoutOfRFIDInExit = 9999; // amount of RF-label in exit Area
+    
+    public static void main(String arg[]){
+     if (amoutOfRFIDInExit == 9999) {
+         System.out.print("ok");
+     }
+    }
 }

@@ -39,11 +39,10 @@ public class Pg_Bill extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+        jButton4 = new javax.swing.JButton();
 
         jDialog1.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         jDialog1.setAlwaysOnTop(true);
-        jDialog1.setLocationByPlatform(true);
-        jDialog1.setPreferredSize(new java.awt.Dimension(600, 150));
         jDialog1.setSize(new java.awt.Dimension(600, 150));
         jDialog1.addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
@@ -149,6 +148,14 @@ public class Pg_Bill extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(204, 51, 0));
         jLabel2.setText("提示：如果有未识别物料，请务必用扫码枪识别");
 
+        jButton4.setFont(new java.awt.Font("微软雅黑", 0, 36)); // NOI18N
+        jButton4.setText("读取");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -166,6 +173,8 @@ public class Pg_Bill extends javax.swing.JFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addComponent(jButton1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton4)
+                                .addGap(219, 219, 219)
                                 .addComponent(jButton2)))))
                 .addContainerGap(151, Short.MAX_VALUE))
         );
@@ -176,13 +185,14 @@ public class Pg_Bill extends javax.swing.JFrame {
                 .addComponent(TitleLabel)
                 .addGap(43, 43, 43)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 138, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 127, Short.MAX_VALUE)
                 .addComponent(jLabel2)
                 .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
-                    .addComponent(jButton2))
-                .addGap(89, 89, 89))
+                    .addComponent(jButton2)
+                    .addComponent(jButton4))
+                .addGap(100, 100, 100))
         );
 
         getAccessibleContext().setAccessibleName("");
@@ -246,11 +256,30 @@ public class Pg_Bill extends javax.swing.JFrame {
         }       
         
     }//GEN-LAST:event_jButton3ActionPerformed
-
+    public void changTableModel(){
+        int numT;//表格已有数据的行数
+        DefaultTableModel model = (DefaultTableModel) this.jTable1.getModel();
+        numT = model.getRowCount();//获取当前已有行数
+        while (numT > 0) {//如果是全体刷新表格需要移除之前的所有数据行
+            model.removeRow(0);
+            numT--;
+        }
+        for (int i= 0; i < rfiw.data.BillData.tagsEndflag;i++){
+            model.addRow(rfiw.data.BillData.billList[i]);
+        }
+        
+        jTable1.setModel(model);
+        
+    }
     private void jDialog1WindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_jDialog1WindowClosed
         // TODO add your handling code here:
         this.setVisible(true);
     }//GEN-LAST:event_jDialog1WindowClosed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        this.changTableModel();
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -279,12 +308,14 @@ public class Pg_Bill extends javax.swing.JFrame {
         }
         //</editor-fold>
 
-        /* Create and display the form */
+        /* Create and hdisplay the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Pg_Bill().setVisible(true);
             }
         });
+        
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -292,6 +323,7 @@ public class Pg_Bill extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JDialog jDialog1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

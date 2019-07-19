@@ -36,9 +36,9 @@ public class ServerInputThread extends Thread
                 byte[] buffer = new byte[1024];
                 int length = is.read(buffer);
                 String str = new String(buffer, 0, length);
-                System.out.println(str);
-                
-                // rfiw.service.IOProcess.tcpInStr(str, 5000);
+                System.out.println(str);             
+                                
+                // rfiw.service.IOProcess.test();
                 os.write(repOk2RF.getBytes());
 
             }

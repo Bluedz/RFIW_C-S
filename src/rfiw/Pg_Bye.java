@@ -36,8 +36,8 @@ public class Pg_Bye extends javax.swing.JFrame {
         setMaximumSize(new java.awt.Dimension(1024, 768));
         setPreferredSize(new java.awt.Dimension(1024, 768));
 
-        TitleLabel.setFont(new java.awt.Font("微软雅黑", 0, 40)); // NOI18N
-        TitleLabel.setText("结算已完成，请点击“离区”按钮后刷卡离区");
+        TitleLabel.setFont(new java.awt.Font("微软雅黑", 0, 38)); // NOI18N
+        TitleLabel.setText("结算已完成，请点击“离区”按钮后在15秒内刷卡离区");
 
         jButton1.setFont(new java.awt.Font("微软雅黑", 0, 36)); // NOI18N
         jButton1.setText("离区");
@@ -53,21 +53,21 @@ public class Pg_Bye extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(138, Short.MAX_VALUE)
+                .addContainerGap(116, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jButton1)
                         .addGap(472, 472, 472))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(TitleLabel)
-                        .addGap(123, 123, 123))))
+                        .addGap(65, 65, 65))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(346, Short.MAX_VALUE)
+                .addContainerGap(343, Short.MAX_VALUE)
                 .addComponent(TitleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(84, 84, 84)
+                .addGap(87, 87, 87)
                 .addComponent(jButton1)
                 .addGap(236, 236, 236))
         );
