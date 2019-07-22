@@ -52,7 +52,7 @@ public class IOProcess {
 //        return billListItem;
 //    }
 */
-        public static void resolvingCMD (String strCMD) {
+        public static void resolvingCMD (String strCMD) throws Exception {
         String strOpCode ;
         String strUse  ;
         //RF
@@ -82,8 +82,24 @@ public class IOProcess {
         }else if("ACSys".equals(strUse)){
             if("Q".equals(strOpCode)){
                 CardID = jsonObject.getString("CardID");
-                 fillCardID(CardID);
+                if(!rfiw.data.ControlData.inBillFlow){                   
+                  fillCardID(CardID);
+                  
+                  // rfiw.data.BillData.deviceID = 001;
+                  
+                  new rfiw.network.TcpClient().tcpClient("192.168.90.203", 6000, "Q");
+                  // rfiw.data.ControlData.inBillFlow = true;
+                  
+                }else {
+                    System.out.println(rfiw.data.ControlData.inBillFlow);
+                    new rfiw.network.TcpClient().tcpClient("192.168.90.203", 6000, "Q");
+                }
+                 //for test
+                 new rfiw.service.ExportBill().buildTxt(rfiw.data.BillData.deviceID, rfiw.data.BillData.billOwnerID);
             }
+            // else if("R".equals(strOpCode)){
+                // new rfiw.network.TcpClient().tcpClient("192.168.11.56", 6000, "R");
+            // }
         }else System.out.println("unkown command");
     }
     
@@ -130,7 +146,7 @@ public class IOProcess {
                 "53463630303131372C4430303030303030303030303134352C3353313530303041303032"
                 +"\"}";
         String tt = t1 + t2;
-        resolvingCMD(tt);
+        // resolvingCMD(tt);
     
     }
 }

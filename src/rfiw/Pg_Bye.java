@@ -5,6 +5,9 @@
  */
 package rfiw;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Zyh
@@ -81,6 +84,13 @@ public class Pg_Bye extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        try {
+            new rfiw.network.TcpClient().tcpClient("192.168.90.204", 6000, "R");
+        } catch (Exception ex) {
+            Logger.getLogger(Pg_Bye.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        // reset
+        rfiw.RFIW.resetFlow();
         if(false){
         }else{
             rfiw.data.ControlData.frameTag = "Welcome";

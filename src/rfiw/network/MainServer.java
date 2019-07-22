@@ -8,8 +8,10 @@ public class MainServer
     // public static void main(String[] args) throws Exception
     public MainServer() throws Exception
     {
-        int port1 = 6000; // Door
-        int port2 = 5000; // RFID
+        //int port1 = 6000; // Door
+        // int port2 = 5000; // RFID
+        
+        int port2 = 6000;
        // ServerSocket serverSocket1 = new ServerSocket(port1);
         ServerSocket serverSocket2 = new ServerSocket(port2);
 

@@ -15,7 +15,10 @@ public class TcpCMDList {
      // cmd: {"Use": "ACSys","OpCode": "Q", "DeviceID": "0001", "CardID": "0000666666", "Password": "00000000" }
      // return: {"Receive": "ok"} {"Use": "ACSys", "OpCode": "Q", "ReturnStatus": "1", "Password": "00000000"}     
     public static String doorBackOk = "{\"Use\": \"ACSys\", \"OpCode\": \"Q\", \"ReturnStatus\": \"1\", \"Password\": \"00000000\"}";
-        
+    
+    // out: use this card can access
+     // cmd: {"Use": "ACSys","OpCode": "Q","DeviceID": "0001","ReturnStatus": "1","Password": "00000000"} // ReturnStatus": "1"开闸，"0"不开
+    
     // out: Card with this ID can open the Door
      // cmd: {"Use": "ACSys","OpCode": "R","DeviceID": "0002","CardID": "0002926614","TimeOut": 15,"Password": "00000000"}
      // return: {"Use": "ACSys", "OpCode": "R", "DeviceID": "0002", "ReturnStatus": "1"} 

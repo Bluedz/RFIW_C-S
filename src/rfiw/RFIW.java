@@ -47,6 +47,18 @@ public class RFIW {
         }
     }
     
+    public static void resetFlow(){
+        rfiw.data.ControlData.inBillFlow = false;
+        rfiw.data.ControlData.amoutOfRFIDInExit = 9999;
+        rfiw.data.BillData.deviceID= "0002";
+        rfiw.data.BillData.billOwnerID = "";
+        rfiw.data.BillData.tagsEndflag = 0;
+        String[] fillLine = new String[]{null, null, null, null}; 
+        for (int i=0; i < rfiw.data.BillData.billList.length; i++){
+            rfiw.data.BillData.billList[i] = fillLine;
+        }
+    }
+    
     public static void main(String[] args) throws Exception {
         // TODO code application logic here
         // RFIW runner = new RFIW();                
