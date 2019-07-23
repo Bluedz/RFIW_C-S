@@ -75,6 +75,9 @@ public class IOProcess {
                 codeFinish = jsonObject.getInteger("finish");
                 fillRFTagList(RFTagData);
                 if(codeFinish==1){
+                    // 结束处理
+                    
+                    //
                     System.out.println(rfiw.data.BillData.tagsEndflag);
                     System.out.println(rfiw.data.BillData.billList[1][0]);
                 }
@@ -83,13 +86,13 @@ public class IOProcess {
             if("Q".equals(strOpCode)){
                 CardID = jsonObject.getString("CardID");
                 if(!rfiw.data.ControlData.inBillFlow){                   
-                  fillCardID(CardID);
-                  
-                  // rfiw.data.BillData.deviceID = 001;
-                  
+                  fillCardID(CardID);                  
+                  // rfiw.data.BillData.deviceID = 001;                  
                   new rfiw.network.TcpClient().tcpClient("192.168.90.203", 6000, "Q");
                   // rfiw.data.ControlData.inBillFlow = true;
                   
+                  // 请求RF开始读回收箱
+                  rfiw.RFIW.goRequest("Read");
                 }else {
                     System.out.println(rfiw.data.ControlData.inBillFlow);
                     new rfiw.network.TcpClient().tcpClient("192.168.90.203", 6000, "Q");

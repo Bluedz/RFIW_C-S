@@ -6,6 +6,7 @@
 package rfiw;
 import javax.swing.JFrame;
 import rfiw.network.MainServer;
+
 // import rfiw.data.BillData;
 /**
  *
@@ -47,6 +48,15 @@ public class RFIW {
         }
     }
     
+    public static void goRequest(String opCode){
+        String RFHost = "127.0.0.1";
+        int RFPort = 6010;
+        // RF        
+        try { new rfiw.network.TcpClient().tcpClient(RFHost, RFPort, opCode); 
+        }catch(Exception ex){System.out.println(ex);}
+        
+        //ACSys
+    }
     public static void resetFlow(){
         rfiw.data.ControlData.inBillFlow = false;
         rfiw.data.ControlData.amoutOfRFIDInExit = 9999;

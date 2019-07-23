@@ -256,6 +256,7 @@ public class Pg_Bill extends javax.swing.JFrame {
         }       
         
     }//GEN-LAST:event_jButton3ActionPerformed
+    
     public void changTableModel(){
         int numT;//表格已有数据的行数
         DefaultTableModel model = (DefaultTableModel) this.jTable1.getModel();

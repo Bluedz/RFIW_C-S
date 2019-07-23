@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package rfiw;
-
+import java.util.*;  
 /**
  *
  * @author Zyh
@@ -70,9 +70,9 @@ public class Pg_Welcome extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(88, 88, 88))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(415, 415, 415))
             .addGroup(layout.createSequentialGroup()
                 .addGap(108, 108, 108)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -82,9 +82,9 @@ public class Pg_Welcome extends javax.swing.JFrame {
                         .addGap(236, 236, 236)))
                 .addContainerGap(97, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(415, 415, 415))
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(88, 88, 88))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -93,9 +93,9 @@ public class Pg_Welcome extends javax.swing.JFrame {
                 .addComponent(TitleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(176, 176, 176)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(151, 151, 151)
+                .addGap(153, 153, 153)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addGap(54, 54, 54))
         );
@@ -108,17 +108,39 @@ public class Pg_Welcome extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        if (false){
+        rfiw.RFIW.goRequest("ReadCount");
+        // new TestTimer().setTimer(3000);
+        Timer timer = new Timer();// 实例化Timer类  
+        timer.schedule(new TimerTask() {  
+            public void run() {  
+                System.out.println("退出");
+                switchFrame();
+                //
+                this.cancel();  
+            }  
+        }, 8000);// 这里百毫秒  
+        System.out.println("8秒后退出");  
+        /* 
+        if (rfiw.data.ControlData.amoutOfRFIDInExit > 0){
             jLabel1.setVisible(true);
         }else {
             rfiw.data.ControlData.frameTag = "Bill";            
             RFIW.switchJframe(this);           
             
-        }
-        // frameTag = "Bill";
+        }*/
+
         
     }//GEN-LAST:event_jButton1ActionPerformed
-
+    private void switchFrame(){
+        if (rfiw.data.ControlData.amoutOfRFIDInExit > 0){
+            jLabel1.setVisible(true);
+        }else {
+            rfiw.data.ControlData.frameTag = "Bill";            
+            RFIW.switchJframe(this);           
+            //
+            rfiw.RFIW.goRequest("backData");
+        }
+    }
     /**
      * @param args the command line arguments
      */

@@ -14,10 +14,12 @@ import java.net.Socket;
 public class TcpClient {
     public void tcpClient(String host, int port, String opCode)throws Exception{
         Socket socket = new Socket(host, port);
-        String backStr = "{\"Use\": \"ACSys\", \"OpCode\": \"R\", \"DeviceID\": \"0002\", \"ReturnStatus\": \"1\"}";
+        //* String backStr = "{\"Use\": \"ACSys\", \"OpCode\": \"R\", \"DeviceID\": \"0002\", \"ReturnStatus\": \"1\"}";
+        String backStr = null;
         String strCMD = null ;
         if(opCode.equals("R")){
              strCMD = rfiw.service.TcpCMDList.CMDOpenDoorByID (15, rfiw.data.BillData.billOwnerID, rfiw.data.BillData.deviceID);
+             backStr = "{\"Use\": \"ACSys\", \"OpCode\": \"R\", \"DeviceID\": \"0002\", \"ReturnStatus\": \"1\"}";
         }else if(opCode.equals("Q")) {
             if(rfiw.data.ControlData.inBillFlow){
             strCMD = "{\"Use\": \"ACSys\",\"OpCode\": \"Q\",\"DeviceID\": \"0001\",\"ReturnStatus\": \"0\",\"Password\": \"00000000\"}";
@@ -25,7 +27,16 @@ public class TcpClient {
             strCMD = "{\"Use\": \"ACSys\",\"OpCode\": \"Q\",\"DeviceID\": \"0001\",\"ReturnStatus\": \"1\",\"Password\": \"00000000\"}";
             rfiw.data.ControlData.inBillFlow = true;
             }
-        }
+        }else if(opCode.equals("Read")){
+            strCMD = rfiw.service.TcpCMDList.CMDRFRead(opCode, 2, 0);
+            backStr = rfiw.service.TcpCMDList.reCMDRFRead(opCode, 2);
+        }else if(opCode.equals("ReadCount")){
+            strCMD = rfiw.service.TcpCMDList.CMDRFRead(opCode, 1, 2);
+            backStr = rfiw.service.TcpCMDList.reCMDRFRead(opCode, 1);
+        }else if(opCode.equals("backData")){
+            strCMD = rfiw.service.TcpCMDList.CMDRFRead(opCode, 2, 0);
+            backStr = rfiw.service.TcpCMDList.reCMDRFRead(opCode, 2);;
+        }   
         
         // "{\"Use\": \"ACSys\",\"OpCode\": \"R\",\"DeviceID\": \"0002\",\"CardID\": \"0002926614\",\"TimeOut\": 15,\"Password\": \"00000000\"}";
         // CMDOpenDoorByID (int timeOut, String cardID, String deviceID);
@@ -48,6 +59,8 @@ public class TcpClient {
 
         }else{
             System.out.println("Retrun from ACSys is wrong");
+            System.out.println(backStr);
+            System.out.println(str);
             os.write(strCMD.getBytes());
         }
         

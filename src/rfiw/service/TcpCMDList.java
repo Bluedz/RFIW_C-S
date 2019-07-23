@@ -36,15 +36,19 @@ public class TcpCMDList {
     
     // out: 中控要求返回区域1读取结果
      // cmd: {"Use": "RFID", "OpCode": "ReadCount", "Section": 1, "delay": 2}
-     // return: {"Use": "RFID", "OpCode": "ReadCount", "Section": "1", " ReturnStatus ": "1"}
+     // return: {"Use": "RFID", "OpCode": "ReadCount", "Section": 1, "ReturnStatus": "1"}
     
     // out: 中控要求返回标签数据（回收箱）
       // cmd: {"Use": "RFID", "OpCode": "backData", "Section": 2, "delay": 0}
      // return: {"Use": "RFID", "OpCode": "backData", "Section": "2", "ReturnStatus": "1"}
     
-    public static String CMDRFRead(String opCode, int sectionNum){
-        return  "{\"Use\": \"RFID\", \"OpCode\": \""+ opCode + "\", \"Section\": "+ sectionNum + ", \"delay\": 0}";
+    public static String CMDRFRead(String opCode, int sectionNum, int delay){
+        return  "{\"Use\": \"RFID\", \"OpCode\": \""+ opCode + "\", \"Section\": "+ sectionNum + ", \"delay\": " + delay + "}";
     }
+    public static String reCMDRFRead(String opCode, int sectionNum){
+        return  "{\"Use\": \"RFID\", \"OpCode\": \""+ opCode + "\", \"Section\": "+ sectionNum + ", \"ReturnStatus\": \"1\"}";
+    }
+    
     
     // in:  中控接收RF返回的标签数量
      // cmd: {"Use": "RFID", "OpCode": "ReadCount", "Section": 1, "count": 1}
