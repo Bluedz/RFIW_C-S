@@ -28,7 +28,7 @@ public class ExportBill {
             BufferedWriter out = new BufferedWriter(new FileWriter(txtName));
 			out.write("0001 "+c+"\r\n");
 			int e = 1;
-			for(int i=0;i<billList.length - (billList.length- rfiw.data.BillData.tagsEndflag + 1);i++){
+			for(int i=0;i<billList.length - (billList.length- rfiw.data.BillData.tagsEndBit);i++){
 				//每行序号从0002开始
 				e = e + 1;
 				String t = "0" + e;
@@ -36,7 +36,7 @@ public class ExportBill {
 					t = "0" + t;
 				}
 				out.write(t+" ");
-				for(int j=0;j<4;j++){
+				for(int j=1;j<4;j++){
 					out.write(billList[i][j]+" ");
 				}
 				out.write("\r\n");

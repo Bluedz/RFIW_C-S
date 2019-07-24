@@ -49,7 +49,7 @@ public class RFIW {
     }
     
     public static void goRequest(String opCode){
-        String RFHost = "127.0.0.1";
+        String RFHost = rfiw.data.ControlData.RFRead01;
         int RFPort = 6010;
         // RF        
         try { new rfiw.network.TcpClient().tcpClient(RFHost, RFPort, opCode); 
@@ -62,7 +62,8 @@ public class RFIW {
         rfiw.data.ControlData.amoutOfRFIDInExit = 9999;
         rfiw.data.BillData.deviceID= "0002";
         rfiw.data.BillData.billOwnerID = "";
-        rfiw.data.BillData.tagsEndflag = 0;
+        rfiw.data.BillData.tagsEndBit = 0;
+        rfiw.data.ControlData.tagsEndFlag = false;
         String[] fillLine = new String[]{null, null, null, null}; 
         for (int i=0; i < rfiw.data.BillData.billList.length; i++){
             rfiw.data.BillData.billList[i] = fillLine;

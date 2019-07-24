@@ -76,9 +76,9 @@ public class IOProcess {
                 fillRFTagList(RFTagData);
                 if(codeFinish==1){
                     // 结束处理
-                    
+                    rfiw.data.ControlData.tagsEndFlag = true;
                     //
-                    System.out.println(rfiw.data.BillData.tagsEndflag);
+                    System.out.println(rfiw.data.BillData.tagsEndBit);
                     System.out.println(rfiw.data.BillData.billList[1][0]);
                 }
             }
@@ -88,17 +88,17 @@ public class IOProcess {
                 if(!rfiw.data.ControlData.inBillFlow){                   
                   fillCardID(CardID);                  
                   // rfiw.data.BillData.deviceID = 001;                  
-                  new rfiw.network.TcpClient().tcpClient("192.168.90.203", 6000, "Q");
+                  new rfiw.network.TcpClient().tcpClient(rfiw.data.ControlData.ACSysIP01, 6000, "Q");
                   // rfiw.data.ControlData.inBillFlow = true;
                   
                   // 请求RF开始读回收箱
                   rfiw.RFIW.goRequest("Read");
                 }else {
                     System.out.println(rfiw.data.ControlData.inBillFlow);
-                    new rfiw.network.TcpClient().tcpClient("192.168.90.203", 6000, "Q");
+                    new rfiw.network.TcpClient().tcpClient(rfiw.data.ControlData.ACSysIP01, 6000, "Q");
                 }
                  //for test
-                 new rfiw.service.ExportBill().buildTxt(rfiw.data.BillData.deviceID, rfiw.data.BillData.billOwnerID);
+                 // new rfiw.service.ExportBill().buildTxt(rfiw.data.BillData.deviceID, rfiw.data.BillData.billOwnerID);
             }
             // else if("R".equals(strOpCode)){
                 // new rfiw.network.TcpClient().tcpClient("192.168.11.56", 6000, "R");

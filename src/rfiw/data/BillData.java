@@ -12,7 +12,7 @@ package rfiw.data;
 public class BillData {
     public static String deviceID = "0002";
     public static String billOwnerID = "0011609586"; //0000666666 not default
-    public static int tagsEndflag = 0;
+    public static int tagsEndBit = 0;
     public static String[][] billList = new String[100][4];
     /*
             new String [][] {
@@ -29,10 +29,10 @@ public class BillData {
     public static void appendLine(String[] str){
        
         int length, length2;
-        length = billList[tagsEndflag].length;
+        length = billList[tagsEndBit].length;
         length2 = str.length;
-        System.arraycopy(str, 0, billList[tagsEndflag], 0, length);
-        tagsEndflag++;
+        System.arraycopy(str, 0, billList[tagsEndBit], 0, length);
+        tagsEndBit++;
         
     } 
     

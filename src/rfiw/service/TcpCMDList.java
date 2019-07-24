@@ -40,7 +40,7 @@ public class TcpCMDList {
     
     // out: 中控要求返回标签数据（回收箱）
       // cmd: {"Use": "RFID", "OpCode": "backData", "Section": 2, "delay": 0}
-     // return: {"Use": "RFID", "OpCode": "backData", "Section": "2", "ReturnStatus": "1"}
+     // return: {"Use": "RFID", "OpCode": "backData", "Section": 2, "ReturnStatus": "1"}
     
     public static String CMDRFRead(String opCode, int sectionNum, int delay){
         return  "{\"Use\": \"RFID\", \"OpCode\": \""+ opCode + "\", \"Section\": "+ sectionNum + ", \"delay\": " + delay + "}";
