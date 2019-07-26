@@ -241,6 +241,7 @@ public class Pg_Bill extends javax.swing.JFrame {
         jTextField1.setText("");
         jDialog1.dispose();
         
+        String[] barCodeData = textFieldValue.split("@");    
         String[] data = new String[4]; //用于操作表内数据行的data数组，元素个数要与table的列的数量相一致
         int numT;//表格已有数据的行数
         DefaultTableModel model = (DefaultTableModel) this.jTable1.getModel();
@@ -256,11 +257,14 @@ public class Pg_Bill extends javax.swing.JFrame {
 //            data[3] = "R" + i  + 4;
 //        
 //        }
-
-        data[0] = "4";
-        data[1] = "SV603432";
-        data[2] = "D00000000000002";
-        data[3] = "W153A018";
+        data[0] = "BarCode";
+        data[1] = barCodeData[0]; //"SV603432";
+        data[2] = barCodeData[1]; //"D00000000000002";
+        data[3] = barCodeData[2]; //"W153A018";
+        
+        for(int i=0; i< data.length; i++){
+        System.out.println(data);
+        }
         
      // 码枪未获取值则不更新列表
         if (textFieldValue != null && textFieldValue.length() != 0) {
