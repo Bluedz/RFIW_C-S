@@ -226,7 +226,7 @@ public class Pg_Bill extends javax.swing.JFrame {
             rfiw.data.ControlData.frameTag = "Bye";
             RFIW.switchJframe(this);
             // Export Bill
-             new rfiw.service.ExportBill().buildTxt(rfiw.data.BillData.deviceID, rfiw.data.BillData.billOwnerID);
+             new rfiw.service.ExportBill().buildTxt(rfiw.data.ControlData.machineId, rfiw.data.BillData.billOwnerID);
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 

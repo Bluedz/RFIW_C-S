@@ -71,7 +71,7 @@ public class IOProcess {
                 RFCount = jsonObject.getInteger("count");
                  fillRFCount(RFCount);
             }else if("Read".equals(strOpCode)){
-                RFTagData = jsonObject.getString("Data");
+                RFTagData = jsonObject.getString("data");
                 codeFinish = jsonObject.getInteger("finish");
                 fillRFTagList(RFTagData);
                 if(codeFinish==1){
@@ -87,16 +87,21 @@ public class IOProcess {
                 CardID = jsonObject.getString("CardID");
                 if(!rfiw.data.ControlData.inBillFlow){                   
                   fillCardID(CardID);                  
-                  // rfiw.data.BillData.deviceID = 001;                  
-                  new rfiw.network.TcpClient().tcpClient(rfiw.data.ControlData.ACSysIP01, 6000, "Q");
-                  // rfiw.data.ControlData.inBillFlow = true;
+                  // rfiw.data.BillData.deviceID = 001; 
                   
-                  // 请求RF开始读回收箱
-                  rfiw.RFIW.goRequest("Read");
+                  // new rfiw.network.TcpClient().tcpClient(rfiw.data.ControlData.ACSysIP01, 6003, "Q");                  
+                  
+                  // 请求RF开始读回收箱                 
+                   rfiw.RFIW.goRequest("Read");
+                   System.out.println("do ask 1");
                 }else {
                     System.out.println(rfiw.data.ControlData.inBillFlow);
                     new rfiw.network.TcpClient().tcpClient(rfiw.data.ControlData.ACSysIP01, 6000, "Q");
                 }
+                new rfiw.network.TcpClient().tcpClient(rfiw.data.ControlData.ACSysIP01, 6000, "Q");
+                
+                System.out.println("do ask 2");
+                // rfiw.RFIW.goRequest("Read");
                  //for test
                  // new rfiw.service.ExportBill().buildTxt(rfiw.data.BillData.deviceID, rfiw.data.BillData.billOwnerID);
             }

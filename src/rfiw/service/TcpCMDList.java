@@ -18,6 +18,7 @@ public class TcpCMDList {
     
     // out: use this card can access
      // cmd: {"Use": "ACSys","OpCode": "Q","DeviceID": "0001","ReturnStatus": "1","Password": "00000000"} // ReturnStatus": "1"开闸，"0"不开
+     // return:
     
     // out: Card with this ID can open the Door
      // cmd: {"Use": "ACSys","OpCode": "R","DeviceID": "0002","CardID": "0002926614","TimeOut": 15,"Password": "00000000"}
@@ -43,10 +44,10 @@ public class TcpCMDList {
      // return: {"Use": "RFID", "OpCode": "backData", "Section": 2, "ReturnStatus": "1"}
     
     public static String CMDRFRead(String opCode, int sectionNum, int delay){
-        return  "{\"Use\": \"RFID\", \"OpCode\": \""+ opCode + "\", \"Section\": "+ sectionNum + ", \"delay\": " + delay + "}";
+        return  "{\"Use\":\"RFID\",\"OpCode\":\""+ opCode + "\",\"Section\":"+ sectionNum + ",\"delay\":" + delay + "}";
     }
     public static String reCMDRFRead(String opCode, int sectionNum){
-        return  "{\"Use\": \"RFID\", \"OpCode\": \""+ opCode + "\", \"Section\": "+ sectionNum + ", \"ReturnStatus\": \"1\"}";
+        return  "{\"Use\":\"RFID\",\"OpCode\":\""+ opCode + "\",\"Section\":"+ sectionNum + ",\"ReturnStatus\":1}";
     }
     
     
@@ -55,7 +56,7 @@ public class TcpCMDList {
      // return:  { "Receive": "ok"} 
     
     // in: 中控接收RF返回的标签值
-     // cmd: {"Use": "RFID", "OpCode":"Read", "Section": 2, "Data": "ABCDEF1234567890", "count": 1, "finish": 0}
+     // cmd: {"Use": "RFID", "OpCode":"Read", "Section": 2, "data": "ABCDEF1234567890", "count": 1, "finish": 0}
      // return: { "Receive": "ok"} 
    
 }

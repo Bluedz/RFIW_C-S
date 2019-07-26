@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package rfiw;
+package rfiw.TestPak;
 
 /**
  *
@@ -26,13 +26,13 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
  
-public class Test implements MouseListener{
+public class TestX implements MouseListener{
 	static JButton bt1;
 	static JButton bt2;
 	static JButton bt3;
 	static JPanel card;
 	static CardLayout cl;
-	public Test(){
+	public TestX(){
 		bt1 = new JButton("按钮1");
 		bt2 = new JButton("按钮2");
 		bt3 = new JButton("按钮3");
@@ -45,7 +45,7 @@ public class Test implements MouseListener{
 	public static void main(String[]args){
 		JFrame jf = new JFrame("界面切换");
 		
-		Test t = new Test();
+		TestX t = new TestX();
 		
 		card.setLayout(cl);
 		card.add(bt1);

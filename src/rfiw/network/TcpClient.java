@@ -23,8 +23,10 @@ public class TcpClient {
         }else if(opCode.equals("Q")) {
             if(rfiw.data.ControlData.inBillFlow){
             strCMD = "{\"Use\": \"ACSys\",\"OpCode\": \"Q\",\"DeviceID\": \"0001\",\"ReturnStatus\": \"0\",\"Password\": \"00000000\"}";
+            backStr = "hi";
             }else {
             strCMD = "{\"Use\": \"ACSys\",\"OpCode\": \"Q\",\"DeviceID\": \"0001\",\"ReturnStatus\": \"1\",\"Password\": \"00000000\"}";
+            backStr = "hi";
             rfiw.data.ControlData.inBillFlow = true;
             }
         }else if(opCode.equals("Read")){
@@ -59,6 +61,7 @@ public class TcpClient {
 
         }else{
             System.out.println("Retrun from ACSys is wrong");
+            System.out.println("backstr:");
             System.out.println(backStr);
             System.out.println(str);
             os.write(strCMD.getBytes());
@@ -68,6 +71,10 @@ public class TcpClient {
         is.close();
         os.close();
         socket.close();
+        
+        //
+        System.out.println("do ask");
+        // rfiw.RFIW.goRequest("Read");
     }
     
     private String getBackStr(Socket socket)throws Exception{

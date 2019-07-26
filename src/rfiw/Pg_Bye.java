@@ -91,7 +91,7 @@ public class Pg_Bye extends javax.swing.JFrame {
         }
         
         // reset
-        // rfiw.RFIW.resetFlow();
+         rfiw.RFIW.resetFlow();
         
         if(false){
         }else{

@@ -19,10 +19,10 @@ public class ExportBill {
 		//格式化文件名
                 String[][] billList = rfiw.data.BillData.billList;
 		Date date = new Date();
-		SimpleDateFormat ft = new SimpleDateFormat ("yyyyMMddhhmmss");
+		SimpleDateFormat ft = new SimpleDateFormat ("yyyyMMddHHmmss");
 		String txtName = ft.format(date);
 		//文件路径
-		txtName = "D:\\ExportData\\RFID-"+m+"-"+txtName +".txt";
+		txtName = "D:\\ExportData\\RFIW-"+m+"-"+txtName +".txt";
 		System.out.println(txtName);
 		try {
             BufferedWriter out = new BufferedWriter(new FileWriter(txtName));

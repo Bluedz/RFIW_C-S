@@ -118,7 +118,7 @@ public class Pg_Welcome extends javax.swing.JFrame {
                 //
                 this.cancel();  
             }  
-        }, 8000);// 这里百毫秒  
+        }, 3000);// 这里百毫秒  
         System.out.println("8秒后退出");  
         /* 
         if (rfiw.data.ControlData.amoutOfRFIDInExit > 0){
