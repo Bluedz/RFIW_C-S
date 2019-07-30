@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package rfiw.network;
+import rfiw.data.*;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.Socket;
@@ -18,14 +19,17 @@ public class TcpClient {
         String backStr = null;
         String strCMD = null ;
         if(opCode.equals("R")){
-             strCMD = rfiw.service.TcpCMDList.CMDOpenDoorByID (15, rfiw.data.BillData.billOwnerID, rfiw.data.BillData.deviceID);
+            //0729Md 
+            strCMD = rfiw.service.TcpCMDList.CMDOpenDoorByID (15, rfiw.data.BillData.billOwnerID, rfiw.data.ControlData.ACSysDevice02, ControlData.ACSysPSW);
              backStr = "{\"Use\": \"ACSys\", \"OpCode\": \"R\", \"DeviceID\": \"0002\", \"ReturnStatus\": \"1\"}";
         }else if(opCode.equals("Q")) {
             if(rfiw.data.ControlData.inBillFlow){
-            strCMD = "{\"Use\": \"ACSys\",\"OpCode\": \"Q\",\"DeviceID\": \"0001\",\"ReturnStatus\": \"0\",\"Password\": \"00000000\"}";
+            strCMD = rfiw.service.TcpCMDList.CMDAccessInOK(rfiw.data.ControlData.ACSysDevice01, "0", ControlData.ACSysPSW);
+            //0729Md "{\"Use\": \"ACSys\",\"OpCode\": \"Q\",\"DeviceID\": \"0001\",\"ReturnStatus\": \"0\",\"Password\": \"00000000\"}";
             backStr = "hi";
             }else {
-            strCMD = "{\"Use\": \"ACSys\",\"OpCode\": \"Q\",\"DeviceID\": \"0001\",\"ReturnStatus\": \"1\",\"Password\": \"00000000\"}";
+            strCMD = rfiw.service.TcpCMDList.CMDAccessInOK(rfiw.data.ControlData.ACSysDevice01, "1", ControlData.ACSysPSW) ;
+            //0729Md "{\"Use\": \"ACSys\",\"OpCode\": \"Q\",\"DeviceID\": \"0001\",\"ReturnStatus\": \"1\",\"Password\": \"00000000\"}";
             backStr = "hi";
             rfiw.data.ControlData.inBillFlow = true;
             }
@@ -38,6 +42,9 @@ public class TcpClient {
         }else if(opCode.equals("backData")){
             strCMD = rfiw.service.TcpCMDList.CMDRFRead(opCode, 2, 0);
             backStr = rfiw.service.TcpCMDList.reCMDRFRead(opCode, 2);;
+        }else if(opCode.equals("getSequenceNumber")){
+            strCMD = rfiw.service.TcpCMDList.CMDRFGetMachineID(opCode);
+            backStr = rfiw.service.TcpCMDList.reCMDRFGetMachineID(opCode);
         }   
         
         // "{\"Use\": \"ACSys\",\"OpCode\": \"R\",\"DeviceID\": \"0002\",\"CardID\": \"0002926614\",\"TimeOut\": 15,\"Password\": \"00000000\"}";
@@ -47,23 +54,24 @@ public class TcpClient {
         OutputStream os = socket.getOutputStream();        
         // 将信息写入流,把这个信息传递给服务器
         os.write(strCMD.getBytes());
+        //0729Md
+        System.out.println("SendOut:" + strCMD);
         
         // 从服务器端接收信息
         InputStream is = socket.getInputStream();
         byte[] buffer = new byte[1024];
         int length = is.read(buffer);
         String str = new String(buffer, 0, length);
-        System.out.println(str);
+        System.out.println("ReturnV:" + str);
 
         // backStr = getBackStr(socket);
         if ( backStr.equals(str)){
-            System.out.println("Retrun from ACSys is right");
+            System.out.println("Retrun from Device is right");
 
         }else{
-            System.out.println("Retrun from ACSys is wrong");
-            System.out.println("backstr:");
-            System.out.println(backStr);
-            System.out.println(str);
+            System.out.println("Retrun from Device is wrong");
+            System.out.println("- Wbakstr:" + backStr);
+            System.out.println("- Rbakstr:" + str);
             os.write(strCMD.getBytes());
         }
         
@@ -72,8 +80,7 @@ public class TcpClient {
         os.close();
         socket.close();
         
-        //
-        System.out.println("do ask");
+        //System.out.println("do ask");
         // rfiw.RFIW.goRequest("Read");
     }
     

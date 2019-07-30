@@ -10,7 +10,7 @@ package rfiw.data;
  * @author Zyh
  */
 public class BillData {
-    public static String deviceID = "0002";
+    //0729Md public static String deviceID = "0002";
     public static String billOwnerID = "0011609586"; //0000666666 not default
     public static int tagsEndBit = 0;
     public static String[][] billList = new String[100][4];

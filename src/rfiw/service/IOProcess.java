@@ -7,58 +7,24 @@ package rfiw.service;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import rfiw.data.*;
 
 /**
  *
  * @author Zyh
  */
 public class IOProcess {
-/*
-    // process data from TcpServer
-    public static void tcpInStr(String str, int port){
-        if (port == 5000){
-            String[] tt = parseJSONWithJSONObject(str);            
-            rfiw.data.BillData.billList[1] = tt;
-            System.out.println(str);
-            System.out.println(tt[0] + ", " + tt[1] + ", " + tt[2] + ", " + tt[3]);
-            System.out.println(rfiw.data.BillData.billList[1][0]);
-        }
-    
-    
-    // parseJson2Str(str)
-    
-    // find What is it & what 2 do
-    
-    }
-    
-//    public static void tcpOutStr(Command, key){
-//    //find what is it & which is the real command line
-//    
-//    // parseStr2Json()
-//    
-//    // send Use tcpClient (server, port)
-//    }
-    
-//    private static String[] parseJSONWithJSONObject(String JsonData){      
-//        String[] billListItem = {"code", "mat", "batch", "stock"} ;
-//        try
-//        {   billListItem  = 
-//            new String []{"c00", "c01", "c02","c03"};  
-//        }     
-//        catch (Exception e)
-//        {
-//            e.printStackTrace();
-//        }            
-//        return billListItem;
-//    }
-*/
+
         public static void resolvingCMD (String strCMD) throws Exception {
         String strOpCode ;
         String strUse  ;
         //RF
+        String RFMachineID;
         int RFCount; 
         String RFTagData;
         int codeFinish;
+        int RFTagsCount;
+        
         //ACsys
         String CardID;
                 
@@ -73,41 +39,50 @@ public class IOProcess {
             }else if("Read".equals(strOpCode)){
                 RFTagData = jsonObject.getString("data");
                 codeFinish = jsonObject.getInteger("finish");
-                fillRFTagList(RFTagData);
+                // 0729Md
+                RFTagsCount = jsonObject.getInteger("count");
+                if(RFTagsCount != 0){
+                    // 0729MD
+                    try{
+                        fillRFTagList(RFTagData);
+                    }
+                    catch(Exception e){
+                    System.out.println("标签数据数据写入订单列表失败");
+                    System.out.println(e);
+                  }                    
+                }
+                //
                 if(codeFinish==1){
                     // 结束处理
                     rfiw.data.ControlData.tagsEndFlag = true;
                     //
-                    System.out.println(rfiw.data.BillData.tagsEndBit);
-                    System.out.println(rfiw.data.BillData.billList[1][0]);
+                    System.out.println("tagsEndBit:" + rfiw.data.BillData.tagsEndBit);
+                    System.out.println("billList[1][0]" + rfiw.data.BillData.billList[1][0]);
                 }
+            }else if("getSequenceNumber".equals(strOpCode)){
+                RFMachineID = jsonObject.getString("SequenceNumber");
+                rfiw.data.ControlData.machineId = RFMachineID;
+                // System.out.println("what:" + ControlData.machineId);
             }
         }else if("ACSys".equals(strUse)){
             if("Q".equals(strOpCode)){
                 CardID = jsonObject.getString("CardID");
-                if(!rfiw.data.ControlData.inBillFlow){                   
-                  fillCardID(CardID);                  
-                  // rfiw.data.BillData.deviceID = 001; 
+                if(!rfiw.data.ControlData.inBillFlow){  
+                    fillCardID(CardID);                   
                   
                   // new rfiw.network.TcpClient().tcpClient(rfiw.data.ControlData.ACSysIP01, 6003, "Q");                  
                   
                   // 请求RF开始读回收箱                 
                    rfiw.RFIW.goRequest("Read");
-                   System.out.println("do ask 1");
+                   // System.out.println("do ask 1");
                 }else {
-                    System.out.println(rfiw.data.ControlData.inBillFlow);
-                    new rfiw.network.TcpClient().tcpClient(rfiw.data.ControlData.ACSysIP01, 6000, "Q");
+                    System.out.println("inBillFlow? = " + rfiw.data.ControlData.inBillFlow);
+                    new rfiw.network.TcpClient().tcpClient(rfiw.data.ControlData.ACSysIP01, ControlData.ACSysLsnPort, "Q");
                 }
-                new rfiw.network.TcpClient().tcpClient(rfiw.data.ControlData.ACSysIP01, 6000, "Q");
-                
-                System.out.println("do ask 2");
-                // rfiw.RFIW.goRequest("Read");
-                 //for test
-                 // new rfiw.service.ExportBill().buildTxt(rfiw.data.BillData.deviceID, rfiw.data.BillData.billOwnerID);
+                new rfiw.network.TcpClient().tcpClient(rfiw.data.ControlData.ACSysIP01, ControlData.ACSysLsnPort, "Q");
+              
             }
-            // else if("R".equals(strOpCode)){
-                // new rfiw.network.TcpClient().tcpClient("192.168.11.56", 6000, "R");
-            // }
+
         }else System.out.println("unkown command");
     }
     

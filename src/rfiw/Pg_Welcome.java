@@ -34,7 +34,7 @@ public class Pg_Welcome extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("智能仓库结算系统");
+        setTitle("智能仓库结算系统 (" + java.util.ResourceBundle.getBundle("rfiw/config").getString("machineID") + ")"); // NOI18N
         setMaximumSize(new java.awt.Dimension(1024, 768));
         setPreferredSize(new java.awt.Dimension(1024, 768));
 
@@ -91,11 +91,11 @@ public class Pg_Welcome extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(35, 35, 35)
                 .addComponent(TitleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(176, 176, 176)
+                .addGap(153, 153, 153)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(153, 153, 153)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 89, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addGap(54, 54, 54))
         );
@@ -119,7 +119,7 @@ public class Pg_Welcome extends javax.swing.JFrame {
                 this.cancel();  
             }  
         }, 3000);// 这里百毫秒  
-        System.out.println("8秒后退出");  
+        System.out.println("3秒后退出");  
         /* 
         if (rfiw.data.ControlData.amoutOfRFIDInExit > 0){
             jLabel1.setVisible(true);
@@ -138,7 +138,7 @@ public class Pg_Welcome extends javax.swing.JFrame {
             rfiw.data.ControlData.frameTag = "Bill";            
             RFIW.switchJframe(this);           
             //
-            rfiw.RFIW.goRequest("backData");
+            rfiw.RFIW.goRequest("backData");            
         }
     }
     /**

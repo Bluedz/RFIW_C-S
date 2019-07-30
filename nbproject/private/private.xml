@@ -4,7 +4,13 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/D:/_sync/jobs/RFIW/RFIW/src/rfiw/Pg_Bill.java</file>
+            <file>file:/D:/_sync/jobs/RFIW/RFIW/src/rfiw/RFIW.java</file>
+            <file>file:/D:/_sync/jobs/RFIW/RFIW/src/rfiw/Pg_Welcome.java</file>
+            <file>file:/D:/_sync/jobs/RFIW/RFIW/src/rfiw/TestPak/ReadProps.java</file>
+            <file>file:/D:/_sync/jobs/RFIW/RFIW/src/rfiw/network/TcpClient.java</file>
+            <file>file:/D:/_sync/jobs/RFIW/RFIW/src/rfiw/config.properties</file>
             <file>file:/D:/_sync/jobs/RFIW/RFIW/src/rfiw/data/BillData.java</file>
+            <file>file:/D:/_sync/jobs/RFIW/RFIW/src/rfiw/service/TcpCMDList.java</file>
             <file>file:/D:/_sync/jobs/RFIW/RFIW/src/rfiw/data/ControlData.java</file>
             <file>file:/D:/_sync/jobs/RFIW/RFIW/src/rfiw/service/IOProcess.java</file>
         </group>

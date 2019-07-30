@@ -48,9 +48,13 @@ public class RFIW {
         }
     }
     
+    public static void getRFMachineID(){
+         goRequest("getSequenceNumber");
+    }
+    
     public static void goRequest(String opCode){
         String RFHost = rfiw.data.ControlData.RFRead01;
-        int RFPort = 6010;
+        int RFPort = rfiw.data.ControlData.RFLsnPort;
         // RF        
         try { new rfiw.network.TcpClient().tcpClient(RFHost, RFPort, opCode); 
         }catch(Exception ex){System.out.println(ex);}
@@ -60,7 +64,7 @@ public class RFIW {
     public static void resetFlow(){
         rfiw.data.ControlData.inBillFlow = false;
         rfiw.data.ControlData.amoutOfRFIDInExit = 9999;
-        rfiw.data.BillData.deviceID= "0002";
+        //0729Md rfiw.data.BillData.deviceID= "0002";
         rfiw.data.BillData.billOwnerID = "";
         rfiw.data.BillData.tagsEndBit = 0;
         rfiw.data.ControlData.tagsEndFlag = false;
@@ -72,7 +76,11 @@ public class RFIW {
     
     public static void main(String[] args) throws Exception {
         // TODO code application logic here
-        // RFIW runner = new RFIW();                
+        // RFIW runner = new RFIW();    
+        
+        // getMachineID
+        goRequest("getSequenceNumber");
+        // System.out.println(rfiw.data.ControlData.machineId);
         
         JFrame welcomePage = new Pg_Welcome();
         welcomePage.setVisible(true);
@@ -83,7 +91,7 @@ public class RFIW {
         rfiw.data.BillData.billList[1][1] = "show";
         System.out.print(rfiw.data.BillData.billList[1][1]);
         // System.out.print(TestData.tData);
-         */
+        */
         
     }
     

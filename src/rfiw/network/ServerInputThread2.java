@@ -46,7 +46,7 @@ public class ServerInputThread2 extends Thread{
                 byte[] buffer = new byte[1024];
                 int length = is.read(buffer);
                 String str = new String(buffer, 0, length);
-                System.out.println(str);
+                System.out.println("Receive:"+ str);
                 try {
                     // rfiw.service.IOProcess.resolvingCMD("{\"Use\": \"RFID\", \"OpCode\": \"ReadCount\", \"Section\": 1, \"count\": 1}");
                     rfiw.service.IOProcess.resolvingCMD(str);
