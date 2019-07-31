@@ -26,13 +26,29 @@ public class BillData {
             {"code", "mat", "batch", "stock"}
         };
 
-    public static void appendLine(String[] str){
-       
-        int length, length2;
+    // 执行写入时检测是否物料已被计入结算列表，有效的新增数据则更新列表
+    public static boolean appendLine(String[] str){
+       boolean flg = true;
+       int length, length2;
+
+       for(int i=0; i < tagsEndBit ; i++){
+          if ((billList[tagsEndBit-1][0]).equals(str[0])){
+              flg = false;
+          }       
+       }
+        
+       if (flg){
         length = billList[tagsEndBit].length;
         length2 = str.length;
         System.arraycopy(str, 0, billList[tagsEndBit], 0, length);
         tagsEndBit++;
+       }else{
+       // 提示重复扫描或已存在与列表内
+        System.out.println("本条标签数据重复扫描或已存在与列表内");
+       }
+       
+       //System.out.println(billList[tagsEndBit-1][0] + flg + tagsEndBit+"," + str[0]);
+       return flg;
         
     } 
     

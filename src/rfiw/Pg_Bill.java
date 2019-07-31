@@ -54,7 +54,6 @@ public class Pg_Bill extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("微软雅黑", 0, 24)); // NOI18N
         jLabel1.setText("扫码结果：");
 
-        jTextField1.setForeground(new java.awt.Color(204, 204, 204));
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
@@ -112,7 +111,7 @@ public class Pg_Bill extends javax.swing.JFrame {
                 {"3", "SV603431", "D00000000000001", "W153A017"}
             },
             new String [] {
-                "Code", "物料号", "批次号", "库位号"
+                "区别码", "物料号", "批次号", "库位号"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -157,10 +156,11 @@ public class Pg_Bill extends javax.swing.JFrame {
             }
         });
 
-        jLabelWarning.setVisible(false);
+        // jLabelWarning.setVisible(false);
         jLabelWarning.setFont(new java.awt.Font("宋体", 0, 18)); // NOI18N
         jLabelWarning.setForeground(new java.awt.Color(255, 51, 51));
-        jLabelWarning.setText("正在处理标签信息，请等待！");
+        jLabelWarning.setText("  ");
+        jLabelWarning.setToolTipText("");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -172,39 +172,42 @@ public class Pg_Bill extends javax.swing.JFrame {
                         .addGap(434, 434, 434)
                         .addComponent(TitleLabel))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(117, 117, 117)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGap(139, 139, 139)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 747, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addComponent(jButton1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton4)
-                                .addGap(219, 219, 219)
-                                .addComponent(jButton2))))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                    .addComponent(jButton1)
+                                    .addGap(210, 210, 210)
+                                    .addComponent(jButton4)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jButton2))
+                                .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(383, 383, 383)
+                        .addGap(364, 364, 364)
                         .addComponent(jLabelWarning)))
-                .addContainerGap(151, Short.MAX_VALUE))
+                .addContainerGap(129, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addComponent(TitleLabel)
-                .addGap(43, 43, 43)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 121, Short.MAX_VALUE)
+                .addGap(36, 36, 36)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 413, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                 .addComponent(jLabel2)
                 .addGap(34, 34, 34)
+                .addComponent(jLabelWarning)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(jButton4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabelWarning)
-                .addGap(79, 79, 79))
+                    .addComponent(jButton4)
+                    .addComponent(jButton2))
+                .addGap(41, 41, 41))
         );
+
+        jLabelWarning.getAccessibleContext().setAccessibleName("");
 
         getAccessibleContext().setAccessibleName("");
 
@@ -221,8 +224,10 @@ public class Pg_Bill extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        if(false){
+        if(!rfiw.data.ControlData.tagsEndFlag){
+            jLabelWarning.setText("正在处理标签信息，请稍后重试！"); //setVisible(true);
         }else{
+            jLabelWarning.setText(""); //setVisible(false);
             rfiw.data.ControlData.frameTag = "Bye";
             RFIW.switchJframe(this);
             // Export Bill
@@ -241,7 +246,7 @@ public class Pg_Bill extends javax.swing.JFrame {
         jTextField1.setText("");
         jDialog1.dispose();
         
-        String[] barCodeData = textFieldValue.split("@");    
+        String[] barCodeData; // = textFieldValue.split("@");    
         String[] data = new String[4]; //用于操作表内数据行的data数组，元素个数要与table的列的数量相一致
         int numT;//表格已有数据的行数
         DefaultTableModel model = (DefaultTableModel) this.jTable1.getModel();
@@ -250,26 +255,25 @@ public class Pg_Bill extends javax.swing.JFrame {
 //            model.removeRow(0);
 //            numT--;
 //        }
-//        for (int i=0; i<4; i++){
-//            data[0] = "R" + i  + 1;
-//            data[1] = "R" + i  + 2;
-//            data[2] = "R" + i  + 3;
-//            data[3] = "R" + i  + 4;
-//        
-//        }
-        data[0] = "BarCode";
-        data[1] = barCodeData[0]; //"SV603432";
-        data[2] = barCodeData[1]; //"D00000000000002";
-        data[3] = barCodeData[2]; //"W153A018";
         
-        for(int i=0; i< data.length; i++){
-        System.out.println(data);
-        }
+//        for(int i=0; i< data.length; i++){
+//        System.out.println(data);
+//        }
         
      // 码枪未获取值则不更新列表
         if (textFieldValue != null && textFieldValue.length() != 0) {
-            model.addRow(data);
-            jTable1.setModel(model);
+            barCodeData = textFieldValue.split("@");
+            
+            data[0] = barCodeData[0]; //"BarCode";
+            data[1] = barCodeData[1]; //"SV603432";
+            data[2] = barCodeData[2]; //"D00000000000002";
+            data[3] = barCodeData[3]; //"W153A018";
+            
+            // 执行写入时检测是否物料已被计入结算列表，有效的新增数据则更新列表和界面
+            if(rfiw.data.BillData.appendLine(data)){
+                model.addRow(data);
+                jTable1.setModel(model);
+            }      
         }       
         
     }//GEN-LAST:event_jButton3ActionPerformed
@@ -299,9 +303,9 @@ public class Pg_Bill extends javax.swing.JFrame {
         this.changTableModel();
         if(rfiw.data.ControlData.tagsEndFlag == false){
             // do
-            jLabelWarning.setVisible(true);
+            jLabelWarning.setText("正在处理标签信息，请稍后重试！");//.setVisible(true);
         }else {
-            jLabelWarning.setVisible(false);
+            jLabelWarning.setText("");//.setVisible(false);
         
         }
         
