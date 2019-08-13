@@ -26,11 +26,11 @@ public class TcpClient {
             if(rfiw.data.ControlData.inBillFlow){
             strCMD = rfiw.service.TcpCMDList.CMDAccessInOK(rfiw.data.ControlData.ACSysDevice01, "0", ControlData.ACSysPSW);
             //0729Md "{\"Use\": \"ACSys\",\"OpCode\": \"Q\",\"DeviceID\": \"0001\",\"ReturnStatus\": \"0\",\"Password\": \"00000000\"}";
-            backStr = "hi";
+            backStr = "{\"Use\": \"ACSys\",\"OpCode\": \"Q\",\"DeviceID\": \"0001\",\"ReturnStatus\": \"0\",\"Received\": \"ok\"}";
             }else {
             strCMD = rfiw.service.TcpCMDList.CMDAccessInOK(rfiw.data.ControlData.ACSysDevice01, "1", ControlData.ACSysPSW) ;
             //0729Md "{\"Use\": \"ACSys\",\"OpCode\": \"Q\",\"DeviceID\": \"0001\",\"ReturnStatus\": \"1\",\"Password\": \"00000000\"}";
-            backStr = "hi";
+            backStr = "{\"Use\": \"ACSys\",\"OpCode\": \"Q\",\"DeviceID\": \"0001\",\"ReturnStatus\": \"1\",\"Received\": \"ok\"}";
             rfiw.data.ControlData.inBillFlow = true;
             }
         }else if(opCode.equals("Read")){

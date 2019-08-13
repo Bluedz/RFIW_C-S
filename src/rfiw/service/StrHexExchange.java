@@ -12,10 +12,10 @@ package rfiw.service;
 public class StrHexExchange {
     public static void main(String[] args) {
         System.out.println("HEX: " + 
-        	str2Hex("b10, b11, b12, b13"));	
+        	str2Hex("A@B@C@D0"));	
         // str2Hex("00001,SF600117,D00000000000145,3S15000A002"));
 		System.out.println("String: " + 
-        		hex2Str("30303030312C53463630303131372C4430303030303030303030303134352C3353313530303041303032"));
+        		hex2Str("303030303140534636303031313740443030303030303030303030313435403353313530303041303032"));
     }
 	
     /**

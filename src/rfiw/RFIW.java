@@ -1,10 +1,13 @@
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
 package rfiw;
+import java.net.URL;
 import javax.swing.JFrame;
+import rfiw.data.ControlData;
 import rfiw.network.MainServer;
 
 // import rfiw.data.BillData;
@@ -53,7 +56,7 @@ public class RFIW {
     }
     
     public static void goRequest(String opCode){
-        String RFHost = rfiw.data.ControlData.RFRead01;
+        String RFHost = rfiw.data.ControlData.RFReadIP01;
         int RFPort = rfiw.data.ControlData.RFLsnPort;
         // RF        
         try { new rfiw.network.TcpClient().tcpClient(RFHost, RFPort, opCode); 
@@ -77,15 +80,19 @@ public class RFIW {
     public static void main(String[] args) throws Exception {
         // TODO code application logic here
         // RFIW runner = new RFIW();    
+
+        // 
+        System.out.println((new ControlData().getClass().getResource("")).getPath());
+        ControlData.printParams();
         
-        // getMachineID
+        //
         goRequest("getSequenceNumber");
-        // System.out.println(rfiw.data.ControlData.machineId);
         
+        //        
         JFrame welcomePage = new Pg_Welcome();
         welcomePage.setVisible(true);
         // MainServer Server = 
-        new rfiw.network.MainServer();
+        new rfiw.network.MainServer();        
         
         /* test
         rfiw.data.BillData.billList[1][1] = "show";

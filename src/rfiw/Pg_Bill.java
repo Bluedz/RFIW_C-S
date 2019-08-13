@@ -96,7 +96,7 @@ public class Pg_Bill extends javax.swing.JFrame {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("智能仓库结算系统");
+        setTitle("智能仓库结算系统 (" + rfiw.data.ControlData.machineID+ ") "+ rfiw.data.ControlData.RFIWVersion);
         setMaximumSize(new java.awt.Dimension(1024, 2147483647));
         setPreferredSize(new java.awt.Dimension(1024, 768));
 
@@ -106,9 +106,7 @@ public class Pg_Bill extends javax.swing.JFrame {
         jTable1.setFont(new java.awt.Font("宋体", 0, 14)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"1", "SF600117", "D00000000000145", "3S15000A002"},
-                {"2", "SV603430", "D00000000000001", "W153A016"},
-                {"3", "SV603431", "D00000000000001", "W153A017"}
+
             },
             new String [] {
                 "区别码", "物料号", "批次号", "库位号"
@@ -130,6 +128,7 @@ public class Pg_Bill extends javax.swing.JFrame {
 
         jButton1.setFont(new java.awt.Font("微软雅黑", 0, 36)); // NOI18N
         jButton1.setText("扫码");
+        jButton1.setEnabled(false);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -138,6 +137,7 @@ public class Pg_Bill extends javax.swing.JFrame {
 
         jButton2.setFont(new java.awt.Font("微软雅黑", 0, 36)); // NOI18N
         jButton2.setText("确认");
+        jButton2.setEnabled(false);
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -231,7 +231,7 @@ public class Pg_Bill extends javax.swing.JFrame {
             rfiw.data.ControlData.frameTag = "Bye";
             RFIW.switchJframe(this);
             // Export Bill
-             new rfiw.service.ExportBill().buildTxt(rfiw.data.ControlData.machineId, rfiw.data.BillData.billOwnerID);
+             new rfiw.service.ExportBill().buildTxt(rfiw.data.ControlData.machineID, rfiw.data.BillData.billOwnerID);
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -306,6 +306,8 @@ public class Pg_Bill extends javax.swing.JFrame {
             jLabelWarning.setText("正在处理标签信息，请稍后重试！");//.setVisible(true);
         }else {
             jLabelWarning.setText("");//.setVisible(false);
+            jButton1.setEnabled(true);
+            jButton2.setEnabled(true);
         
         }
         

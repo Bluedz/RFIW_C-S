@@ -1,10 +1,9 @@
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package rfiw.TestPak;
+package rfiw.service;
 
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;
@@ -16,9 +15,24 @@ import java.util.Properties;
  *
  * @author Zyh
  */
-public class ReadProps {
+public class ProcessProps {
+    public String readOneKey(String uri, String fileName, String key) {
+            String keyValue = null;
+            Properties prop = new Properties(); 
+            try{
+                //InputStream in=new BufferedInputStream (ClassLoader.getSystemResourceAsStream(uri));
+                InputStream in = new BufferedInputStream (new FileInputStream(uri+fileName));
+                prop.load(in);     ///加载属性列表
+                keyValue = prop.getProperty(key);            
+                in.close();               
+            }
+            catch(Exception e){
+                     System.out.println(e);
+            }            
+            return keyValue;
+    }
     
-    public void read(String uri, String fileName) {
+    public void readAllKeys(String uri, String fileName) {
             
             Properties prop = new Properties(); 
             try{
@@ -38,13 +52,13 @@ public class ReadProps {
             }
     }
     
-    public void write(String uri, String fileName){
+    public void write(String uri, String fileName, String key, String keyValue){
         Properties prop = new Properties(); 
         try{
-                     ///保存属性到b.properties文件
+            //保存属性到b.properties文件
              FileOutputStream oFile = new FileOutputStream(uri+fileName, true);//true表示追加打开
-             prop.setProperty("phone", "10086");
-             prop.store(oFile, "The New properties file");
+             prop.setProperty(key, keyValue);
+             // prop.store(oFile, "The New properties file");
              oFile.close();
         }
         catch(Exception e){
@@ -53,14 +67,4 @@ public class ReadProps {
     
     }
     
-    public static void main(String[] args) { 
-    //
-        // String uri = "D:\\_sync\\jobs\\RFIW\\RFIW\\src\\rfiw\\";
-        // String uri = "TestPak\\";
-        String uri = "src/rfiw/TestPak/";
-        new ReadProps().write(uri, "project.properties");
-        new ReadProps().read(uri, "project.properties");
-    //
-    
-    }
 }

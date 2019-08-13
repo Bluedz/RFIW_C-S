@@ -34,9 +34,8 @@ public class Pg_Welcome extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("智能仓库结算系统 (" + java.util.ResourceBundle.getBundle("rfiw/config").getString("machineID") + ")"); // NOI18N
+        setTitle("智能仓库结算系统 " + rfiw.data.ControlData.RFIWVersion);
         setMaximumSize(new java.awt.Dimension(1024, 768));
-        setPreferredSize(new java.awt.Dimension(1024, 768));
 
         TitleLabel.setFont(new java.awt.Font("微软雅黑", 0, 36)); // NOI18N
         TitleLabel.setText("欢迎使用西泰克智能仓库");
@@ -91,16 +90,14 @@ public class Pg_Welcome extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(35, 35, 35)
                 .addComponent(TitleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(153, 153, 153)
+                .addGap(115, 115, 115)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(153, 153, 153)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 89, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 127, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addGap(54, 54, 54))
         );
-
-        getAccessibleContext().setAccessibleName("");
 
         pack();
         setLocationRelativeTo(null);

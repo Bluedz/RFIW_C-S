@@ -8,6 +8,8 @@ package rfiw.service;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import rfiw.data.*;
+//import static rfiw.data.ControlData.configName;
+//import static rfiw.data.ControlData.configURI;
 
 /**
  *
@@ -57,12 +59,14 @@ public class IOProcess {
                     rfiw.data.ControlData.tagsEndFlag = true;
                     //
                     System.out.println("tagsEndBit:" + rfiw.data.BillData.tagsEndBit);
+                    System.out.println("billList[0][0]" + rfiw.data.BillData.billList[0][0]);
                     System.out.println("billList[1][0]" + rfiw.data.BillData.billList[1][0]);
                 }
             }else if("getSequenceNumber".equals(strOpCode)){
                 RFMachineID = jsonObject.getString("SequenceNumber");
-                rfiw.data.ControlData.machineId = RFMachineID;
-                // System.out.println("what:" + ControlData.machineId);
+                rfiw.data.ControlData.machineID = RFMachineID;
+                // new rfiw.service.ProcessProps().write(ControlData.configURI, ControlData.configName, "machineID", RFMachineID);
+                System.out.println("which one?:" + ControlData.machineID);
             }
         }else if("ACSys".equals(strUse)){
             if("Q".equals(strOpCode)){
@@ -96,7 +100,7 @@ public class IOProcess {
     public static void fillRFTagList(String hexStr){
         //
         String str = rfiw.service.StrHexExchange.hex2Str(hexStr);
-        String[] strArr = str.split(",");
+        String[] strArr = str.split("@");
         System.out.println(str +"="+strArr[0]);
         rfiw.data.BillData.appendLine(strArr);
         // rfiw.Pg_Bill.main(strArr);
