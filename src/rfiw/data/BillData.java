@@ -32,10 +32,20 @@ public class BillData {
        int length, length2;
 
        for(int i=0; i < tagsEndBit ; i++){
-          if ((billList[i][0]).equals(str[0])){ 
+          /*if ((billList[i][0]).equals(str[0])){ 
           //if ((billList[tagsEndBit-1][0]).equals(str[0])){
               flg = false;
-          }       
+          }*/
+          if ((billList[i][0]).equals(str[0])){ 
+              if((billList[i][1]).equals(str[1])){
+                  if((billList[i][2]).equals(str[2])){
+                      if((billList[i][3]).equals(str[3])){
+                          flg = false;
+                      }
+                  }
+              }
+  
+          }   
        }
         
        if (flg){
